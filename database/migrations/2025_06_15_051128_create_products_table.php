@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
 
             $table->uuid('id')->primary();
-            
+
             $table->string('name');
 
             $table->text('description')->nullable();
@@ -24,13 +24,16 @@ return new class extends Migration
             //quantity of the product
             $table->integer('quantity')->default(0);
 
-            
+
             $table->text('three_d_image')->nullable();
-            
+
             $table->enum('status', ['active', 'inactive'])->default('active');
 
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            
+
+            $table->foreignId('label_id')->nullable()->constrained('labels')->onDelete('set null');
+
+
             $table->timestamps();
         });
     }

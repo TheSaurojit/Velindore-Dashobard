@@ -6,33 +6,67 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-4">Create Product</h4>
+                    <h4 class="card-title mb-4">Update Product</h4>
 
-                    @php
 
-                        $categories = \App\Models\Category::pluck('name', 'id')->toArray();
 
-                    @endphp
-
-                    <form action="{{ route('products.create') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('products.update', ['product' => $product->id]) }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
 
-                        <x-form-field type="text" label="name" name="name" id="input-name" placeholder="enter name" />
+                        <x-form-field type="text" label="name" name="name" id="input-name" placeholder="enter name"
+                            value="{{ $product->name }}" />
 
                         <x-form-field type="text" label="description" name="description" id="input-description"
-                            placeholder="enter description" />
+                            placeholder="enter description" value="{{ $product->description }}" />
 
                         <x-form-field type="select" label="category" name="category" id="input-category" :options="$categories"
-                            placeholder="enter category" />
+                            placeholder="choose category" value="{{ $product->category->id }}" />
 
-                        <x-form-field type="select" label="status" name="status" id="input-status" 
-                            :options="['active', 'inactive']"
-                            :matchOnKey="false"
-                            placeholder="enter status" />
 
-                        <x-form-field type="number" label="price" name="price" id="input-price" placeholder="enter price" />
+                        <x-form-field type="select" label="label" name="label" id="input-label" :options="$labels"
+                            placeholder="choose label" value="{{ $product->label?->id ?? '' }}" />
 
-                        <x-form-field type="number" label="quantity" name="quantity" id="input-quantity" placeholder="enter quantity" />
+                        <x-form-field type="select" label="status" name="status" id="input-status" :options="['active', 'inactive']"
+                            :matchOnKey="false" placeholder="enter status" value="{{ $product->status }}" />
+
+                        <x-form-field type="number" label="price" name="price" id="input-price"
+                            placeholder="enter price" value="{{ $product->price }}" />
+
+                        <x-form-field type="number" label="quantity" name="quantity" id="input-quantity"
+                            placeholder="enter quantity" value="{{ $product->quantity }}" />
+
+
+                        <div class="mb-4">
+                            <label class="form-label">Current Images</label>
+                            <div class="row" id="existing-images">
+
+
+                                @foreach ($product->images as $image)
+                                    @php
+                                        $index = $image['id'];
+                                    @endphp
+
+                                    <div class="col-md-3 mb-3">
+                                        <div class="card">
+                                            <img src="{{ $image['image_path'] }}" class="card-img-top"
+                                                style="height:150px; object-fit:cover;">
+                                            <div class="card-body p-2 text-center">
+                                                <div class="form-check">
+                                                    <input class="form-check-input " type="checkbox" name="remove_images[]"
+                                                        value="{{ $index }}" id="remove-{{ $index }}">
+                                                    <label class="form-check-label" for="remove-{{ $index }}">
+                                                        Remove
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+
+                            </div>
+                        </div>
 
 
 
@@ -46,6 +80,11 @@
 
                         {{-- images end --}}
 
+
+
+                        @if ($product->three_d_image)
+                            <h6 style="color: green">3D Image Exists</h6>
+                        @endif
 
                         <div class="mb-3" style="padding: 10px 0">
                             <label for="three_d_image" class="form-label">3D Image</label>
@@ -130,6 +169,4 @@
             }
         });
     </script>
-
-
 @endsection

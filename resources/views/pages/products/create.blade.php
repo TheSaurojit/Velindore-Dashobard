@@ -8,11 +8,7 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Create Product</h4>
 
-                    @php
-
-                        $categories = \App\Models\Category::pluck('name', 'id')->toArray();
-
-                    @endphp
+                
 
                     <form action="{{ route('products.create') }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -23,7 +19,11 @@
                             placeholder="enter description" />
 
                         <x-form-field type="select" label="category" name="category" id="input-category" :options="$categories"
-                            placeholder="enter category" />
+                            placeholder="choose category" />
+
+                            
+                        <x-form-field type="select" label="label" name="label" id="input-label" :options="$labels"
+                            placeholder="choose label" />
 
                         <x-form-field type="select" label="status" name="status" id="input-status" 
                             :options="['active', 'inactive']"

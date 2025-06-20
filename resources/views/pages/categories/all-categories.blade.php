@@ -21,53 +21,50 @@
             <div class="card">
                 <div class="card-body">
 
-                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
-
-                        <thead>
-                            <tr>
-
-                                <th>S No.</th>
-                                <th>Name</th>
-
-                                <th>
-                                    Actions
-                                </th>
-
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            @foreach ($categories as $cat)
+                    <div class="table-responsive">
+                        <table class="table table-striped table-borderless table-centered">
+                            <thead class="table-light">
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $cat->name }}</td>
-                                    <td>
-                                        <a href="{{ route('category.update', ['category' => $cat->id]) }}"
-                                            class="btn btn-success">
-                                            <i class="fas fa-pencil-alt"></i>
-                                        </a>
 
-                                        @php
-                                            $url = route('category.delete', ['category' => $cat->id]);
-                                        @endphp
-
-                                        <a href="#" class="btn btn-danger"
-                                            onclick="showDeleteModal('{{ $url }}')">
-                                            <i class="fas fa-trash-alt"></i> </a>
-
-
-
-                                    </td>
-
-
+                                    <th> S No.</th>
+                                    <th> Name</th>
+                                    <th> Actions </th>
 
                                 </tr>
-                            @endforeach
+                            </thead>
+                            <tbody>
+
+                                @foreach ($categories as $cat)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $cat->name }}</td>
+                                        <td>
+                                            <a href="{{ route('category.update', ['category' => $cat->id]) }}"
+                                                class="btn btn-success">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+
+                                            @php
+                                                $url = route('category.delete', ['category' => $cat->id]);
+                                            @endphp
+
+                                            <a href="#" class="btn btn-danger"
+                                                onclick="showDeleteModal('{{ $url }}')">
+                                                <i class="fas fa-trash-alt"></i> </a>
 
 
-                        </tbody>
-                    </table>
+
+                                        </td>
+
+                                    </tr>
+                                @endforeach
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
 
                 </div>
             </div>

@@ -13,12 +13,12 @@ class CategoryController extends Controller
         return view('pages.categories.all-categories', compact('categories'));
     }
 
-    public function categoryCreateView()
+    public function createView()
     {
         return view('pages.categories.create-category');
     }
 
-    public function categoryCreate(Request $request)
+    public function create(Request $request)
     {
         $data = $request->validate([
             'name' => 'required|string',

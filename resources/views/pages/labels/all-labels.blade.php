@@ -8,7 +8,7 @@
 
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0 font-size-18">Products</h4>
+                <h4 class="mb-sm-0 font-size-18">Labels</h4>
             </div>
         </div>
 
@@ -21,50 +21,35 @@
             <div class="card">
                 <div class="card-body">
 
+
                     <div class="table-responsive">
                         <table class="table table-striped table-borderless table-centered">
                             <thead class="table-light">
                                 <tr>
-                                    <th>S No.</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Category</th>
-                                    <th>Label</th>
 
-                                    <th>Image</th>
-                                    <th>
-                                        Actions
-                                    </th>
+                                    <th scope="col"> Id</th>
+                                    <th scope="col"> Name</th>
+                                    <th scope="col"> Actions</th>
+
                                 </tr>
                             </thead>
-
                             <tbody>
 
-                                @foreach ($products as $product)
+                                @foreach ($labels as $label)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td class="{{ $product->status == 'active' ? 'text-success' : 'text-danger' }} ">{{ Str::title($product->status) }}</td>
-                                        <td>{{ $product->category->name }}</td>
 
-                                        <td>{{ $product->label?->name ?? 'N/A' }}</td>
-
+                                        <td>{{ $label->name }}</td>
 
                                         <td>
-                                            <img src="{{ $product->singleImage?->image_path }}" alt=""
-                                                class="img-fluid" style="width: 100px; height: 100px;">
-
-                                        </td>
-
-                                        <td>
-                                            <a href="{{ route('products.update', ['product' => $product->id]) }}"
+                                            <a href="{{ route('labels.update', ['label' => $label->id]) }}"
                                                 class="btn btn-success">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
 
 
                                             @php
-                                                $url = route('products.delete', ['product' => $product->id]);
+                                                $url = route('labels.delete', ['label' => $label->id]);
                                             @endphp
 
                                             <a href="#" class="btn btn-danger"
@@ -72,16 +57,15 @@
                                                 <i class="fas fa-trash-alt"></i> </a>
 
                                         </td>
-
-
-
                                     </tr>
                                 @endforeach
 
+
                             </tbody>
                         </table>
-
                     </div>
+
+
                 </div>
             </div>
         </div> <!-- end col -->

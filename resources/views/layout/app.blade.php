@@ -205,11 +205,27 @@
                         </li>
 
                         <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="bx bx-user-circle"></i>
+                                <span key="t-authentication">Labels</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ route('labels.all') }}" key="t-register">All Labels</a></li>
+
+                                <li><a href="{{ route('labels.create') }}" key="t-register">Create Label</a></li>
+
+
+                            </ul>
+                        </li>
+
+                        <li>
                             <a href="{{ route('orders.all') }}">
                                 <i class="bx bx-user-circle"></i>
                                 <span key="t-dashboards">Orders </span>
                             </a>
                         </li>
+
+
 
                         {{-- <li>
                             <a href="{{ route('admin.dashboard') }}">

@@ -5,10 +5,10 @@
         @switch($type)
             @case('select')
                 <select name="{{ $name }}" id="{{ $id }}" class="form-control" {{ $required ? 'required' : '' }}>
-                    <option value="" disabled {{ $value == '' ? 'selected' : '' }}>{{ $placeholder }}</option>
+                    <option value="" {{ $value == '' ? 'selected' : '' }}>{{ $placeholder }}</option>
                     @foreach ($options as $key => $option)
                         <option value="{{ $matchOnKey ? $key : $option }}"
-                          {{ ($matchOnKey ? $key == $value : $option == $value) ? 'selected' : '' }}>
+                            {{ ($matchOnKey ? $key == $value : $option == $value) ? 'selected' : '' }}>
                             {{ $option }}
                         </option>
                     @endforeach
@@ -18,7 +18,9 @@
 
             @case('textarea')
                 <textarea name="{{ $name }}" id="{{ $id }}" class="form-control" placeholder="{{ $placeholder }}"
-                    {{ $required ? 'required' : '' }}>{{ $value }}</textarea>
+                    {{ $required ? 'required' : '' }}>
+                    {{ $value }}
+                </textarea>
             @break
 
             @case('checkbox')
