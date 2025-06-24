@@ -32,30 +32,51 @@
                                     <th scope="col">Product Name</th>
                                     <th scope="col">Product Image</th>
 
+                                    <th scope="col">Ordered At</th>
+
                                     <th scope="col">Shipping Status</th>
+                                    <th scope="col">Actions</th>
+
                                 </tr>
                             </thead>
                             <tbody>
 
-                                
+
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>{{ $order->id }}</td>
                                         <td>{{ $order->product->name }}</td>
 
                                         <td>
-                                            <img src="{{ $order->product->images[0]->image_path }}" alt=""
+                                            <img src="{{ $order->product->singleImage->image_path }}" alt=""
                                                 class="img-fluid" style="width: 100px; height: 100px;">
                                         </td>
 
                                         <td>
-                                            {{ $order->status }}
+                                            {{ $order->ordered_at }}
+                                        </td>
+
+                                        <td>
+                                            {{ ucfirst($order->status) }}
+                                        </td>
+
+                                        <td>
+
+                                            <a href="{{ route('orders.view', $order->id) }}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+
+                                            <a href="{{ route('orders.update', $order->id) }}"
+                                                class="btn btn-success btn-sm">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+
                                         </td>
 
                                     </tr>
                                 @endforeach
 
-                               
+
 
                             </tbody>
                         </table>

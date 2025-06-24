@@ -24,22 +24,26 @@ return new class extends Migration
 
 
             // Enhanced shipping information
-            $table->string('shipping_street_address');
-            $table->string('shipping_city');
-            $table->string('shipping_state_province')->nullable();
-            $table->string('shipping_postal_code');
-            $table->string('shipping_country', 2);
+            $table->text('shipping_street_address');
+            $table->text('shipping_city');
+            $table->text('shipping_state_province')->nullable();
+            $table->text('shipping_postal_code');
+            $table->text('shipping_country');
 
 
             // Order details
             $table->integer('quantity');
+            $table->decimal('price', 10, 2);
             $table->decimal('total_price', 10, 2);
             $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'cancelled'])->default('pending');
 
+            $table->enum('payment_status', ['paid','unpaid'])->default('unpaid'); // Payment status of the order
+
+
             $table->timestamp('ordered_at')->useCurrent(); // When the order was placed
-            $table->timestamp('shipped_at')->nullable(); // When the order is shipped
-            $table->timestamp('delivered_at')->nullable(); // When the order is delivered
-            $table->timestamp('cancelled_at')->nullable(); // When the order is cancelled
+            // $table->timestamp('shipped_at')->nullable(); // When the order is shipped
+            // $table->timestamp('delivered_at')->nullable(); // When the order is delivered
+            // $table->timestamp('cancelled_at')->nullable(); // When the order is cancelled
 
             $table->timestamps();
 

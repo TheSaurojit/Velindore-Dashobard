@@ -45,6 +45,16 @@ Route::prefix('products')->controller(ProductController::class)->as('products.')
 Route::prefix('orders')->controller(OrderController::class)->as('orders.')->group(function () {
 
     Route::get('/', 'allOrder')->name('all');
+
+    Route::get('/view/{order}', 'show')->name('view');
+
+    Route::get('/update/{order}', 'updateView')->name('update');
+
+    Route::post('/update/{order}', 'update')->name('update');
+
+
+    Route::post('/update-status/{order}', 'updateStatus')->name('update-status');
+
 });
 
 Route::prefix('labels')->controller(LabelController::class)->as('labels.')->group(function () {

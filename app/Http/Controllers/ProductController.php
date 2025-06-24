@@ -62,7 +62,7 @@ class ProductController extends Controller
             'label' => 'nullable|exists:labels,id',
 
             'images' => 'required|array', // images must be an array
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048', // each file must be an image
+            'images.*' => 'image|mimes:jpeg,png,jpg', // each file must be an image
         ]);
 
         try {
@@ -115,7 +115,7 @@ class ProductController extends Controller
             'remove_images' => 'nullable|array', // images must be an array
 
             'images' => 'nullable|array', // images must be an array
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:2048', // each file must be an image
+            'images.*' => 'image|mimes:jpeg,png,jpg', // each file must be an image
         ]);
 
         try {
