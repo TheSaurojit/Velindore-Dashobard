@@ -16,6 +16,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth'])->group(function () {
 
+    Route::get('/change-password', [AuthController::class, 'changePasswordView'])->name('change-password');
+    Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
+
+    
+
     Route::get('/', function () {
         return view('home');
     })->name('home');

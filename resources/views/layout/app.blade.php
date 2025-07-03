@@ -234,6 +234,13 @@
                             </a>
                         </li>
 
+                        <li>
+                            <a href="{{ route('change-password') }}">
+                                <i class="bx bx-user-circle"></i>
+                                <span key="t-dashboards">Change Password </span>
+                            </a>
+                        </li>
+
 
 
                         {{-- <li>
