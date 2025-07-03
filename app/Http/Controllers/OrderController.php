@@ -56,4 +56,9 @@ class OrderController extends Controller
         $order->update($data);
         return redirect()->route('orders.all')->with('success', 'Order updated successfully.');
     }
+
+    public function invoice(Order $order)
+    {
+        return view('pages.orders.invoice', compact('order'));
+    }
 }

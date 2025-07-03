@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FileUploader;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -20,13 +21,24 @@ class CategoryController extends Controller
 
     public function create(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'name' => 'required|string',
+            'image' => 'required|image'
         ]);
 
-        Category::create($data);
+        try {
 
-        return redirect()->route('category.all')->with('success', 'Category created successfully.');
+            $imagePath = FileUploader::upload($request->file('image'));
+
+            Category::create([
+                'name' => $request->input('name'),
+                'image' => $imagePath
+            ]);
+
+            return redirect()->route('category.all')->with('success', 'Category created successfully.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Failed to create category: ');
+        }
     }
 
     public function updateView(Category $category)
@@ -36,12 +48,20 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $data = $request->validate([
+
+        $request->validate([
             'name' => 'required|string',
+            'image' => 'nullable|image'
         ]);
 
-        $category->update($data);
-        
+        $imagePath = $request->hasFile('image') ? FileUploader::upload($request->file('image')) : $category->image;
+
+
+        $category->update([
+            'name' => $request->input('name'),
+            'image' => $imagePath
+        ]);;
+
         return redirect()->route('category.all')->with('success', 'Category updated successfully.');
     }
 

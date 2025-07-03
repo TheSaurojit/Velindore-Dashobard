@@ -64,11 +64,15 @@
 
                                             <a href="{{ route('orders.view', $order->id) }}" class="btn btn-primary btn-sm">
                                                 <i class="fas fa-eye"></i>
+                                                
                                             </a>
 
                                             <a href="{{ route('orders.update', $order->id) }}"
                                                 class="btn btn-success btn-sm">
                                                 <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                             <a href="{{ route('orders.invoice', $order->id) }}" class="btn btn-warning btn-sm">
+                                                <i class="fas fa-file-invoice"></i>
                                             </a>
 
                                         </td>

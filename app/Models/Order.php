@@ -25,6 +25,7 @@ class Order extends Model
 
         'quantity',
         'price',
+        'tax',
         'total_price',
         'status',
 
@@ -39,6 +40,11 @@ class Order extends Model
         'created_at',
         'updated_at',
     ];
+
+    protected $casts = [
+    'ordered_at' => 'datetime',
+];
+
 
     public function product()
     {

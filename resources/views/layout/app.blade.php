@@ -152,7 +152,7 @@
                             <!-- item-->
 
                             <div class="dropdown-divider"></div>
-                            {{-- <form action="{{ route('logout') }}" method="POST" class="dropdown-item text-danger"> --}}
+                            <form action="{{ route('logout') }}" method="POST" class="dropdown-item text-danger">
                             @csrf
                             <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
                             <button class="btn-danger" type="submit" key="t-logout">Logout</button>
@@ -224,6 +224,13 @@
                             <a href="{{ route('orders.all') }}">
                                 <i class="bx bx-user-circle"></i>
                                 <span key="t-dashboards">Orders </span>
+                            </a>
+                        </li>
+
+                         <li>
+                            <a href="{{ route('settings') }}">
+                                <i class="bx bx-user-circle"></i>
+                                <span key="t-dashboards">Settings </span>
                             </a>
                         </li>
 

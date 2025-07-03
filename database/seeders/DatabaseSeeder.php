@@ -53,7 +53,8 @@ class DatabaseSeeder extends Seeder
 
             'quantity' => 2,
             'price' => $product->price,
-            'total_price' => $product->price * 2,
+            'tax' => $product->price * 0.18 * 2, // Assuming 18% tax
+            'total_price' => $product->price * 2 + ($product->price * 0.18 * 2), // Total price including tax
         ]);
     }
 }
