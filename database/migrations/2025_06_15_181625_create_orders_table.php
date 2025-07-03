@@ -35,8 +35,8 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
             $table->decimal('tax', 10, 2);
-
             $table->decimal('total_price', 10, 2);
+
             $table->enum('status', ['pending', 'processing', 'shipped', 'delivered', 'cancelled'])->default('pending');
 
             $table->enum('payment_status', ['paid','unpaid'])->default('unpaid'); // Payment status of the order

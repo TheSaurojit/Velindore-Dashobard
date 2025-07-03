@@ -12,7 +12,7 @@ class SettingController extends Controller
     public function updateView()
     {
         // function body
-        $settings = Setting::first();
+        $settings = Setting::find(1);
         return view('pages.settings', compact('settings'));
     }
 
