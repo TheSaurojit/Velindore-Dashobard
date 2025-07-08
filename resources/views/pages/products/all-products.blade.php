@@ -29,6 +29,8 @@
                                     <th>Name</th>
                                     <th>Status</th>
                                     <th>Category</th>
+                                    <th>Quantity</th>
+
                                     <th>Label</th>
 
                                     <th>Image</th>
@@ -46,6 +48,9 @@
                                         <td>{{ $product->name }}</td>
                                         <td class="{{ $product->status == 'active' ? 'text-success' : 'text-danger' }} ">{{ Str::title($product->status) }}</td>
                                         <td>{{ $product->category->name }}</td>
+
+                                        <td>{{ $product->quantity }}</td>
+
 
                                         <td>{{ $product->label?->name ?? 'N/A' }}</td>
 

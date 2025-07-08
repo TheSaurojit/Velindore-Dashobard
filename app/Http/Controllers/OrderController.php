@@ -23,7 +23,7 @@ class OrderController extends Controller
     public function allOrder()
     {
 
-        $orders = Order::with(['product', 'product.singleImage'])->get();
+        $orders = Order::with(['product', 'product.singleImage'])->latest()->get();
 
         return view('pages.orders.all-orders', compact('orders'));
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LabelController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -19,11 +20,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/change-password', [AuthController::class, 'changePasswordView'])->name('change-password');
     Route::post('/change-password', [AuthController::class, 'changePassword'])->name('change-password');
 
-    
 
-    Route::get('/', function () {
-        return view('home');
-    })->name('home');
+
+    Route::get('/', [HomeController::class, 'home'])->name('home');
 
     Route::prefix('categories')->controller(CategoryController::class)->as('category.')->group(function () {
 
