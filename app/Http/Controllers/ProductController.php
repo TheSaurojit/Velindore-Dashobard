@@ -67,7 +67,7 @@ class ProductController extends Controller
 
         try {
 
-            $threeDImage = $request->file('three_d_image') ? FileUploader::upload($request->file('three_d_image'), 'three_d_files') : null;
+            $threeDImage = $request->file('three_d_image') ? FileUploader::upload( file: $request->file('three_d_image'), path: 'three_d_files' , threeD: true) : null;
 
             $product = Product::create([
                 'id' => Str::uuid(),
@@ -120,7 +120,7 @@ class ProductController extends Controller
 
         try {
 
-            $threeDImage = $request->file('three_d_image') ? FileUploader::upload($request->file('three_d_image'), 'three_d_files') : $product->three_d_image;
+            $threeDImage = $request->file('three_d_image') ? FileUploader::upload( file: $request->file('three_d_image'), path: 'three_d_files' , threeD: true) : $product->three_d_image;
 
             $product->update([
                 'name' => $request->input('name'),

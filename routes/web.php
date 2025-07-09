@@ -9,6 +9,19 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/three_d_files/{filename}', function ($filename) {
+
+    $path = public_path('uploads/three_d_files/' . $filename);
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path, [
+        'Access-Control-Allow-Origin' => '*',
+        'Content-Type' => 'model/gltf-binary',
+    ]);
+});
 
 Route::get('/login', [AuthController::class, 'loginView'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
