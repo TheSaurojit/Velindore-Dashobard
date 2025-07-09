@@ -176,6 +176,13 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
 
+                    <li>
+                            <a href="/">
+                                <i class="bx bx-user-circle"></i>
+                                <span key="t-dashboards">Home </span>
+                            </a>
+                        </li>
+
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="bx bx-user-circle"></i>
