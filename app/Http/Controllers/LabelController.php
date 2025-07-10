@@ -51,5 +51,11 @@ class LabelController extends Controller
         return redirect()->route('labels.all')->with('success', 'Label updated successfully.');
     }
 
+     public function destroy(Label $label)
+    {
+        $label->delete();
+        return redirect()->route('labels.all')->with('success', 'Label deleted successfully.');
+    }
+
  
 }
